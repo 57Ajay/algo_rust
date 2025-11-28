@@ -1,6 +1,6 @@
 use std::collections::HashSet;
 use std::io;
-
+#[allow(dead_code)]
 pub fn main() {
     let mut values = String::new();
     let mut integers = String::new();

@@ -1,4 +1,4 @@
 mod examples;
 fn main() {
-    examples::distinct_numbers::main();
+    examples::factory_machines::main();
 }
