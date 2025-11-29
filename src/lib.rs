@@ -5,12 +5,16 @@ pub mod data_structures {
         pub mod vector;
     }
     pub mod searching;
+    pub mod sorting {
+        pub mod merge_sort;
+    }
 }
 
 #[cfg(test)]
 mod tests {
     use super::data_structures::lists::{singly_linked_list, vector};
     use super::data_structures::searching::BinarySearchExt;
+    use super::data_structures::sorting::merge_sort::merge_sort;
     #[test]
     fn test_push_and_indexing() {
         let mut v = vector::MyVec::new();
@@ -76,5 +80,61 @@ mod tests {
 
         assert_eq!(arr.lower_bound(&3), 4);
         assert_eq!(arr.upper_bound(&3), 4);
+    }
+
+    #[test]
+    fn test_empty() {
+        let mut arr: Vec<i32> = vec![];
+        merge_sort(&mut arr);
+        assert_eq!(arr, vec![]);
+    }
+
+    #[test]
+    fn test_single() {
+        let mut arr = vec![42];
+        merge_sort(&mut arr);
+        assert_eq!(arr, vec![42]);
+    }
+
+    #[test]
+    fn test_sorted() {
+        let mut arr = vec![1, 2, 3, 4, 5];
+        merge_sort(&mut arr);
+        assert_eq!(arr, vec![1, 2, 3, 4, 5]);
+    }
+
+    #[test]
+    fn test_reverse() {
+        let mut arr = vec![5, 4, 3, 2, 1];
+        merge_sort(&mut arr);
+        assert_eq!(arr, vec![1, 2, 3, 4, 5]);
+    }
+
+    #[test]
+    fn test_random_small() {
+        let mut arr = vec![10, -2, 33, 0, 5, 4, 4, 1];
+        merge_sort(&mut arr);
+        assert_eq!(arr, vec![-2, 0, 1, 4, 4, 5, 10, 33]);
+    }
+
+    #[test]
+    fn test_random_large() {
+        let rng: i32 = rand::random_range(-1_000_000..100_000);
+
+        let mut arr: Vec<i32> = (0..10_000).map(|_| rng).collect();
+
+        let mut expected = arr.clone();
+
+        merge_sort(&mut arr);
+        expected.sort();
+
+        assert_eq!(arr, expected);
+    }
+
+    #[test]
+    fn test_duplicates() {
+        let mut arr = vec![5, 1, 3, 3, 3, 2, 1];
+        merge_sort(&mut arr);
+        assert_eq!(arr, vec![1, 1, 2, 3, 3, 3, 5]);
     }
 }

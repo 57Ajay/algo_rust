@@ -1,4 +1,4 @@
 mod examples;
 fn main() {
-    examples::factory_machines::main();
+    examples::ferris_wheel::main();
 }
