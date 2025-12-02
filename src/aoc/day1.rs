@@ -1,3 +1,4 @@
+#[allow(dead_code)]
 pub fn main() -> Option<u32> {
     let mut password: u32 = 0;
     let mut dial: i32 = 50;
@@ -14,6 +15,7 @@ pub fn main() -> Option<u32> {
     Some(password)
 }
 
+#[allow(dead_code)]
 fn update_dial(line: &[u8], dial: &mut i32, password: &mut u32) {
     let direction = line[0];
 
@@ -34,6 +36,7 @@ fn update_dial(line: &[u8], dial: &mut i32, password: &mut u32) {
     }
 }
 
+#[allow(dead_code)]
 fn update_dial_as_per_0x434c49434b(line: &[u8], dial: &mut i32, password: &mut u32) {
     let dir = line[0];
     let steps = atoi(&line[1..]);
