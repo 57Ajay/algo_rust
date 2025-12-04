@@ -107,4 +107,3 @@ fn is_repeating_p2(n: u64) -> bool {
 
     false
 }
-
